@@ -2,7 +2,7 @@ import type { MetaFunction } from '@remix-run/node';
 
 export const meta: MetaFunction = () => {
   return [
-    { title: 'Leave by Nine club' },
+    { title: 'Lb9_club' },
     {
       name: 'description',
       content: 'A super secret event network for friends',
