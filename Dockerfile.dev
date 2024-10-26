@@ -1,0 +1,14 @@
+# encapsulate all of the repeated init operations into a single layer
+FROM node:lts-alpine
+WORKDIR /app
+
+RUN corepack enable
+RUN yarn set version berry
+
+ADD ./package.json ./.pnp.cjs ./.pnp.loader.mjs ./vite.config.ts ./tailwind.config.ts ./postcss.config.js ./
+
+RUN yarn install
+
+CMD ["yarn", "dev", "--host"]
+
+EXPOSE 3000

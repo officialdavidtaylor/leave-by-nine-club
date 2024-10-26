@@ -7,6 +7,7 @@
     "build": "remix vite:build",
     "build:deploy": "docker build --platform linux/amd64 -t officialdavidtaylor/leave-by-nine-club .",
     "dev": "remix vite:dev",
+    "dev:docker": "docker run -it -p 5173:5173 -v ./app:/app/app $(docker build -f Dockerfile.dev -q .)",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "remix-serve ./build/server/index.js",
     "test": "vitest",
