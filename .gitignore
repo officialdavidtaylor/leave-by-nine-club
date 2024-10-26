@@ -13,6 +13,9 @@ node_modules
 .env
 .env.development
 
+# Sqlite Database
+*.sqlite
+
 # secrets / other locals
 *.local
 
