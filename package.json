@@ -6,6 +6,8 @@
   "scripts": {
     "build": "remix vite:build",
     "build:deploy": "docker build --platform linux/amd64 -t officialdavidtaylor/leave-by-nine-club .",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
     "dev": "remix vite:dev",
     "dev:docker": "docker run -it -p 5173:5173 -v ./app:/app/app $(docker build -f Dockerfile.dev -q .)",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
@@ -14,14 +16,19 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@libsql/client": "^0.14.0",
     "@remix-run/node": "^2.13.1",
     "@remix-run/react": "^2.13.1",
     "@remix-run/serve": "^2.13.1",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.35.3",
     "isbot": "^4.1.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
+    "@faker-js/faker": "^9.0.3",
     "@remix-run/dev": "^2.13.1",
     "@types/node": "^22.7.7",
     "@types/react": "^18.2.20",
@@ -29,6 +36,7 @@
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^6.7.4",
     "autoprefixer": "^10.4.19",
+    "drizzle-kit": "^0.26.2",
     "eslint": "^8.38.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.28.1",
@@ -39,6 +47,7 @@
     "prettier": "3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
     "tailwindcss": "^3.4.4",
+    "tsx": "^4.19.1",
     "typescript": "^5.1.6",
     "vite": "^5.1.0",
     "vite-tsconfig-paths": "^4.2.1",
