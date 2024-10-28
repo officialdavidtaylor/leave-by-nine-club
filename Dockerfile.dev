@@ -5,10 +5,13 @@ WORKDIR /app
 RUN corepack enable
 RUN yarn set version berry
 
-ADD ./package.json ./.pnp.cjs ./.pnp.loader.mjs ./vite.config.ts ./tailwind.config.ts ./postcss.config.js ./
-
+ADD package.json yarn.lock ./
 RUN yarn install
+
+ADD ./postcss.config.js ./drizzle.config.ts ./tailwind.config.ts ./tsconfig.json ./vite.config.ts ./
+
+ENV VITE_DB_FILE_NAME='file:./db/db.sqlite'
 
 CMD ["yarn", "dev", "--host"]
 
-EXPOSE 3000
+EXPOSE 5173
