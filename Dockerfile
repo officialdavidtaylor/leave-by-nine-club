@@ -20,6 +20,7 @@ RUN yarn build
 FROM base-yarn AS production
 
 COPY --from=builder /app/build ./build
+ADD ./db/db.sqlite ./db/db.sqlite
 
 # install only the production dependencies
 RUN yarn workspaces focus --production
