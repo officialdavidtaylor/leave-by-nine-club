@@ -42,7 +42,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     .from(invitationsTable)
     .where(eq(invitationsTable.secretKey, key))
     .leftJoin(usersTable, eq(usersTable.id, invitationsTable.userId))
-    .leftJoin(eventsTable, eq(eventsTable.id, invitationsTable.userId));
+    .leftJoin(eventsTable, eq(eventsTable.id, invitationsTable.eventId));
 
   if (dataRows.length !== 1) return redirect('/');
 
