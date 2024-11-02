@@ -1,15 +1,13 @@
 import type { MetaFunction } from '@remix-run/node';
 import { Outlet } from '@remix-run/react';
 
-export const meta: MetaFunction = () => {
-  return [
-    { title: 'Lb9_club' },
-    {
-      name: 'description',
-      content: 'A super secret event network for friends',
-    },
-  ];
-};
+export const meta: MetaFunction = () => [
+  { title: 'Leave by Nine Club' },
+  {
+    name: 'description',
+    content: 'A super secret event network for friends',
+  },
+];
 
 export default function Index() {
   return (

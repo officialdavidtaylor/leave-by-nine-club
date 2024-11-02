@@ -5,15 +5,38 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react';
-import type { LinksFunction } from '@remix-run/node';
+import type { LinksFunction, MetaFunction } from '@remix-run/node';
 
 import './tailwind.css';
+
+import favicon96 from './assets/favicon-96x96.png';
+import faviconIco from './assets/favicon.ico';
+import faviconSvg from './assets/favicon.svg';
+import faviconAppleTouchIcon from './assets/apple-touch-icon.png';
+import siteManifest from './assets/site.webmanifest';
 
 export const links: LinksFunction = () => [
   {
     rel: 'icon',
-    href: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌇</text></svg>',
+    type: 'image/png',
+    href: favicon96,
+    sizes: '96x96',
   },
+  {
+    rel: 'apple-touch-icon',
+    href: faviconAppleTouchIcon,
+    sizes: '180x180',
+  },
+  {
+    rel: 'icon',
+    type: 'image/svg+xml',
+    href: faviconSvg,
+  },
+  {
+    rel: 'shortcut icon',
+    href: faviconIco,
+  },
+  { rel: 'manifest', href: siteManifest },
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
   {
     rel: 'preconnect',
@@ -24,6 +47,10 @@ export const links: LinksFunction = () => [
     rel: 'stylesheet',
     href: 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Bungee+Shade&family=Geologica:wght@200&display=swap',
   },
+];
+
+export const meta: MetaFunction = () => [
+  { name: 'apple-mobile-web-app-title', content: 'LeaveBy9' },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
