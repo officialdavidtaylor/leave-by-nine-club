@@ -6,12 +6,17 @@ import {
   MapPinned,
   NotebookPen,
 } from 'lucide-react';
-import { ActionFunctionArgs, json, LoaderFunctionArgs } from '@remix-run/node';
+import { json } from '@remix-run/node';
 import { db } from '@/db/index.server';
 import { eq } from 'drizzle-orm';
 import { eventsTable, invitationsTable, usersTable } from '@/db/schema';
 import { redirect, useLoaderData } from '@remix-run/react';
 import { useState } from 'react';
+import type {
+  ActionFunctionArgs,
+  LoaderFunctionArgs,
+  MetaFunction,
+} from '@remix-run/node';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const key = params.secretKey;
@@ -62,6 +67,18 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     .where(eq(invitationsTable.secretKey, secretKey.toString()));
 
   return null;
+};
+
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  if (!data?.event) return [];
+
+  return [
+    { title: data.event.title },
+    {
+      name: 'description',
+      content: data.event.description,
+    },
+  ];
 };
 
 export default function Event() {
