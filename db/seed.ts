@@ -1,7 +1,7 @@
 import { db } from './index.server';
 import { eventsTable, invitationsTable, usersTable } from './schema';
 import { faker } from '@faker-js/faker';
-import uniqid from 'uniqid';
+import { nanoid } from 'nanoid';
 
 const seed = async () => {
   await db.delete(eventsTable).all();
@@ -43,7 +43,7 @@ const seed = async () => {
       registrations.push({
         eventId: event.id!,
         userId: user.id!,
-        secretKey: uniqid.process(),
+        secretKey: nanoid(),
         didRsvp: false,
       });
     }

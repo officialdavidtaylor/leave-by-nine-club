@@ -1,5 +1,5 @@
 import { int, sqliteTable, text } from 'drizzle-orm/sqlite-core';
-import uniqid from 'uniqid';
+import { nanoid } from 'nanoid';
 
 export const eventsTable = sqliteTable('events_table', {
   id: int().primaryKey({ autoIncrement: true }),
@@ -14,9 +14,7 @@ export const eventsTable = sqliteTable('events_table', {
 /** An intersection table linking users to events */
 export const invitationsTable = sqliteTable('invitations_table', {
   id: int().primaryKey({ autoIncrement: true }),
-  secretKey: text()
-    .unique()
-    .$defaultFn(() => uniqid.process()),
+  secretKey: text().unique().$defaultFn(nanoid),
   didRsvp: int('did_rsvp', { mode: 'boolean' }),
   eventId: int('event_id')
     .references(() => eventsTable.id)
